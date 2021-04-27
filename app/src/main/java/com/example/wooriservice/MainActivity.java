@@ -72,7 +72,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         mBottomNV.setSelectedItemId(R.id.MyAcc);
-        Init();
+        //xml 컴포넌트 배치하는데 계속 불러오길래 끈다 api
+        // Init();
     }
 
     private void BottomNavigate(int id) {  //BottomNavigation 페이지 변경
