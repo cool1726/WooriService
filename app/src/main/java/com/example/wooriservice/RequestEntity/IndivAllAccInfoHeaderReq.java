@@ -4,8 +4,6 @@ import java.io.Serializable;
 
 public class IndivAllAccInfoHeaderReq implements Serializable {
 
-    private String appkey;
-    private String authorization;
     private String UTZPE_CNCT_IPAD;
     private String UTZPE_CNCT_MCHR_UNQ_ID;
     private String UTZPE_CNCT_TEL_NO_TXT;
@@ -14,22 +12,6 @@ public class IndivAllAccInfoHeaderReq implements Serializable {
     private String UTZ_MCHR_OS_VER_NM;
     private String UTZ_MCHR_MDL_NM;
     private String UTZ_MCHR_APP_VER_NM;
-
-    public String getAppkey() {
-        return appkey;
-    }
-
-    public void setAppkey(String appkey) {
-        this.appkey = appkey;
-    }
-
-    public String getAuthorization() {
-        return authorization;
-    }
-
-    public void setAuthorization(String authorization) {
-        this.authorization = authorization;
-    }
 
     public String getUTZPE_CNCT_IPAD() {
         return UTZPE_CNCT_IPAD;

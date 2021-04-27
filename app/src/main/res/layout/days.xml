@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/title_days"
+        android:layout_marginTop="25dp"
+        android:text="위비리치"
+        app:layout_constraintBottom_toTopOf="@id/subtitle_days"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"/>
+
+    <TextView
+        android:id="@+id/subtitle_days"
+        android:layout_below="@id/title_days"
+        android:text="캘린더"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_days"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content" />
+
+    <ImageView
+        android:id="@+id/bt_cal_up"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:alpha="0.1"
+        app:layout_constraintTop_toBottomOf="@id/subtitle_days"
+        app:layout_constraintBottom_toTopOf="@+id/pager"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"/>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="440dp"
+        android:orientation="vertical"
+
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bt_cal_up"
+        app:layout_constraintBottom_toTopOf="@id/bt_cal_down"/>
+
+    <ImageView
+        android:id="@+id/bt_cal_down"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:alpha="0.1"
+        app:layout_constraintTop_toBottomOf="@id/pager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

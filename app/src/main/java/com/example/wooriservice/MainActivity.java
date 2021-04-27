@@ -73,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
         });
         mBottomNV.setSelectedItemId(R.id.MyAcc);
         Init();
-
     }
 
     private void BottomNavigate(int id) {  //BottomNavigation 페이지 변경
@@ -158,8 +157,6 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 IndivAllAccInfoHeaderReq requestHeader = new IndivAllAccInfoHeaderReq();
-                requestHeader.setAppkey(key);
-                requestHeader.setAuthorization("");
                 requestHeader.setUTZPE_CNCT_IPAD("127.0.0.1");
                 requestHeader.setUTZPE_CNCT_MCHR_UNQ_ID("3B5E6E7B");
                 requestHeader.setUTZPE_CNCT_TEL_NO_TXT("01012341234");
@@ -191,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s){
             super.onPostExecute(s);
-            if (!s.equals("")) { // !s.equals("")
+            if (true) { // !s.equals("")
                 try {
                     list = new Gson().fromJson(s, IndivAllAccInfoData.class);
                     if(list.getDataBody().getGRID().size() > 0 ){

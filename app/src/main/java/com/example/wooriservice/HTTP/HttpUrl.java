@@ -81,6 +81,7 @@ public class HttpUrl {
             conn.setDoInput(true);
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("appKey", "l7xxkjkC96hLWupQjTUHsxD3CLDPOX7JNECJ");
             conn.setConnectTimeout(10000);
             conn.setReadTimeout(10000);
 
@@ -95,7 +96,7 @@ public class HttpUrl {
             BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
             while ((inputLine = in.readLine()) != null){
                 outResult.append(inputLine);
-                Log.d("HttpProcess", "중간점검" + outResult);
+//                Log.d("HttpProcess", "중간점검" + outResult);
             }
 
             Log.d("HttpProcess", "중간점검3");
