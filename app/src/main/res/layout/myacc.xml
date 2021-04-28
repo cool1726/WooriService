@@ -7,14 +7,76 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView"
+        android:layout_marginTop="50dp"
+        android:id="@+id/webeerich"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="계좌"
-        android:textSize="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="위비리치"
+        android:textColor="#3F51B5"
+        android:textSize="35dp"
+        app:layout_constraintBottom_toTopOf="@+id/myaccount"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent" />
+    <TextView
+        android:id="@+id/myaccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="내 통장"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@id/accimage"
+        app:layout_constraintTop_toBottomOf="@+id/webeerich"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+    <ImageView
+        android:id="@+id/accimage"
+        android:layout_width="wrap_content"
+        android:layout_height="250dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/temp"
+        app:layout_constraintBottom_toTopOf="@id/myaccountname"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/myaccount"
+        />
+    <TextView
+        android:id="@+id/myaccountname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="우리사랑통장"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@id/myaccountnum"
+        app:layout_constraintTop_toBottomOf="@+id/accimage"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+    <TextView
+        android:id="@+id/myaccountnum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="12******"
+        android:textColor="#BCBCBC"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toTopOf="@id/viewhistory"
+        app:layout_constraintTop_toBottomOf="@+id/webeerich"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="거래 내역 조회"
+        android:id="@+id/viewhistory"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myaccountnum"
+        app:layout_constraintRight_toLeftOf="@id/viewinform"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="통장 정보 확인"
+        android:id="@+id/viewinform"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myaccountnum"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/viewhistory"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

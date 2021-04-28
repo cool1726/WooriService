@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -38,6 +40,15 @@ import com.example.wooriservice.report.reports;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.lang.ref.WeakReference;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -58,9 +69,6 @@ public class MainActivity extends AppCompatActivity {
     private AccBasicInfoTask accBasicInfoTask = new AccBasicInfoTask();
     private AccBasicInfoData accBasicInfoData;
 
-    private Async dbasync = new Async();
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         });
         mBottomNV.setSelectedItemId(R.id.MyAcc);
         //xml 컴포넌트 배치하는데 계속 불러오길래 끈다 api
-         Init();
+         //Init();
     }
 
     private void BottomNavigate(int id) {  //BottomNavigation 페이지 변경
@@ -111,42 +119,13 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.setPrimaryNavigationFragment(fragment);
         fragmentTransaction.setReorderingAllowed(true);
         fragmentTransaction.commitNow();
-
-
     }
+
+
 
     private void Init(){
 //        task.execute();
         accBasicInfoTask.execute();
-    }
-
-    public class Async extends AsyncTask<Void, Void, Void> {
-        String records = "", error = "";
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            try {
-                Class.forName("com.mysql.jdbc.Driver");
-                Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.1.2:3306/android", "andro", "andro");
-                Statement statement = connection.createStatement();
-                ResultSet resultSet = statement.executeQuery("SELECT * FROM test");
-                while(resultSet.next()) {
-                    records += resultSet.getString(1) + " " + resultSet.getString(2) + "\n";
-                }
-            } catch(Exception e) {
-                error = e.toString();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            if(error != "") {
-                Log.e("DB-records", records);
-                Log.e("DB-error", error);
-            }
-            super.onPostExecute(aVoid);
-        }
     }
 
 

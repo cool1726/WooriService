@@ -48,7 +48,7 @@ public class Calendars extends Fragment {
         viewPager2.setAdapter(new ViewPagerAdapter(getContext(), list, colorList));
         viewPager2.setOrientation(ViewPager2.ORIENTATION_VERTICAL);
 
-        viewPager2.setCurrentItem(5, false);
+        viewPager2.setCurrentItem(3, false);
     }
 
     @Override
