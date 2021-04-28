@@ -80,8 +80,8 @@ public class HttpUrl {
             conn.setHostnameVerifier(DO_NOT_VERIFY);
             conn.setDoInput(true);
             conn.setRequestMethod("POST");
-            conn.setRequestProperty("Content-Type", "application/json");
             conn.setRequestProperty("appKey", "l7xxkjkC96hLWupQjTUHsxD3CLDPOX7JNECJ");
+            conn.setRequestProperty("Content-Type", "application/json");
             conn.setConnectTimeout(10000);
             conn.setReadTimeout(10000);
 
