@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.wooriservice.R;
@@ -20,6 +22,7 @@ import java.util.List;
 public class Calendars extends Fragment {
     private View view;
     ViewPager2 viewPager2;
+    RecyclerView recyclerView2;
 
     private List<List<String>> datalist;
     private ArrayList<Pair<String, String>> colorList = new ArrayList<>();
@@ -29,12 +32,32 @@ public class Calendars extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.days, container, false);
 
+        ArrayList<String> lists = new ArrayList<>();
+        String getTime ="이** 씨는 나에게";
+        for (int i=0; i<2; i++) {
+            lists.add(getTime + " ") ;
+        }
+
+        // 리사이클러뷰에 LinearLayoutManager 객체 지정.
+        recyclerView2 = view.findViewById(R.id.caltransview) ;
+        recyclerView2.setLayoutManager(new LinearLayoutManager(getContext())) ;
+
+
+        // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
+        CalendarRecylerAdapter adapter = new CalendarRecylerAdapter(lists) ;
+        recyclerView2.setAdapter(adapter);
+
+        CalendarAdapter.setRecyler(recyclerView2);
+
+
         return view;
     }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         viewPager2 = view.findViewById(R.id.pager);
+
 
         /* handler 기능 */
         colorList.add(new Pair("210430", "blue"));
@@ -59,6 +82,7 @@ public class Calendars extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
 
         /* handler 기능 */
         colorList.add(new Pair("red", "blue"));

@@ -1,7 +1,6 @@
 package com.example.wooriservice.calendars;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
 import android.util.Pair;
@@ -11,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wooriservice.R;
 
@@ -23,6 +24,8 @@ public class CalendarAdapter extends ArrayAdapter<Date> implements View.OnClickL
     private LayoutInflater inflater;
     private int inputMonth;
     private ArrayList<Date> days;
+    boolean isRecyclerViewVisible = false;
+    static RecyclerView recyclerView2;
     Context mcontext;
 
     View view;
@@ -46,6 +49,11 @@ public class CalendarAdapter extends ArrayAdapter<Date> implements View.OnClickL
 
         this.colorList = colorList;
         inflater = LayoutInflater.from(context);
+    }
+
+    public static void setRecyler(RecyclerView recyclerView3) {
+        recyclerView2 = recyclerView3;
+
     }
 
     public View getView(int position, View view, ViewGroup parent) {
@@ -75,6 +83,8 @@ public class CalendarAdapter extends ArrayAdapter<Date> implements View.OnClickL
 
         txtDate.setText(String.valueOf(calendar.get(Calendar.DATE)));
 
+
+
         // inputMonth는 ViewPager의 해당 페이지에 출력하는 Month를 표시
         if(month != inputMonth || year != calendarToday.get(Calendar.YEAR)) {
             // 해당월이 아닌경우에는 GridView에 표시되지 않도록 함
@@ -102,6 +112,13 @@ public class CalendarAdapter extends ArrayAdapter<Date> implements View.OnClickL
         view.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+                isRecyclerViewVisible = !isRecyclerViewVisible;
+                if(isRecyclerViewVisible) {
+                    recyclerView2.setVisibility(View.VISIBLE);
+                } else {
+                    recyclerView2.setVisibility(View.INVISIBLE);
+                }
+
 
                 if (imgColor.getColorFilter() == null) {
 //                    Intent intent = new Intent(parent.getContext(), addDiary.class);
@@ -122,6 +139,7 @@ public class CalendarAdapter extends ArrayAdapter<Date> implements View.OnClickL
     public void onClick(View v){
         if(this.calClickListener != null) {
             // !!
+            Log.w("cal", "click");
         }
     }
 
