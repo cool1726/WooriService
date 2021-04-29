@@ -161,6 +161,4 @@ public class Myacc extends Fragment {
         thread.start();
     }
 
-
-
 }
