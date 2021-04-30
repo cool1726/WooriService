@@ -81,17 +81,15 @@
                 app:layout_constraintLeft_toRightOf="@id/moneycs"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/moneyt" />
-            <ImageView
+
+            <com.github.mikephil.charting.charts.LineChart
                 android:id="@+id/moneyimage"
-                android:layout_width="wrap_content"
-                android:layout_height="250dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/temp"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
                 app:layout_constraintBottom_toTopOf="@id/catt"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/moneyct"
-                />
+                app:layout_constraintTop_toBottomOf="@id/moneyct"/>
 
             <TextView
                 android:id="@+id/catt"
@@ -125,16 +123,16 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/moneyt"
                 />
-            <ImageView
+
+            <com.github.mikephil.charting.charts.BarChart
                 android:id="@+id/catimage"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:background="@drawable/temp"
                 app:layout_constraintBottom_toTopOf="@id/caticon"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/moneyct"
-                />
+                app:layout_constraintTop_toBottomOf="@id/moneyct"/>
+
             <ImageView
                 android:id="@+id/caticon"
                 android:layout_width="wrap_content"
@@ -190,17 +188,17 @@
                 app:layout_constraintLeft_toRightOf="@id/weekc"
                 app:layout_constraintRight_toRightOf="parent"
                 />
-            <ImageView
+
+            <com.github.mikephil.charting.charts.PieChart
                 android:id="@+id/weekimage"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/temp"
                 app:layout_constraintTop_toBottomOf="@id/weekcs"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                />
+                app:layout_constraintRight_toRightOf="parent"/>
+
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
