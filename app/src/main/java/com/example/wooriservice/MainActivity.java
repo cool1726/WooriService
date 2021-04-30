@@ -64,8 +64,7 @@ public class MainActivity extends AppCompatActivity {
     public static String getAccTransList = "/oai/wb/v1/finance/getAccTransList";            //거래내역조회
     public static String getIndivAllAccInfo = "/oai/wb/v1/finance/getIndivAllAccInfo";        //전계좌조회
     public static String getAccBasicInfo = "/oai/wb/v1/finance/getAccBasicInfo";            //계좌기본조회
-    private IndivAllAccInfoTask task = new IndivAllAccInfoTask();
-    private IndivAllAccInfoData list;
+
     private AccBasicInfoTask accBasicInfoTask = new AccBasicInfoTask();
     private AccBasicInfoData accBasicInfoData;
 
@@ -129,69 +128,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    /* 통신 */
-    public class IndivAllAccInfoTask extends AsyncTask<String, String, String> {
 
-        @Override
-        protected void onPreExecute(){
-            super.onPreExecute();
-        }
-
-        @Override
-        protected String doInBackground(String... strings) {
-            String response;
-
-            try {
-                IndivAllAccInfoHeaderReq requestHeader = new IndivAllAccInfoHeaderReq();
-                requestHeader.setUTZPE_CNCT_IPAD("127.0.0.1");
-                requestHeader.setUTZPE_CNCT_MCHR_UNQ_ID("3B5E6E7B");
-                requestHeader.setUTZPE_CNCT_TEL_NO_TXT("01012341234");
-                requestHeader.setUTZPE_CNCT_MCHR_IDF_SRNO("IMEI");
-                requestHeader.setUTZ_MCHR_OS_DSCD("1");
-                requestHeader.setUTZ_MCHR_OS_VER_NM("8.0.0");
-                requestHeader.setUTZ_MCHR_MDL_NM("SM-G930S");
-                requestHeader.setUTZ_MCHR_APP_VER_NM("1.0.0");
-
-                IndivAllAccInfoBodyReq requestBody = new IndivAllAccInfoBodyReq();
-
-                IndivAllAccInfoDataReq request = new IndivAllAccInfoDataReq();
-                request.setDataHeader(requestHeader);
-                request.setDataBody(requestBody);
-
-                String data = new Gson().toJson(request);
-                Log.d("요청 데이터", data);
-                String uri = URL + getIndivAllAccInfo;
-                response = new HttpUrl().sendREST(uri, data);
-                Log.d("success1", "성공1" + response);
-            }
-            catch (Exception e) {
-                response = e.getMessage();
-                Log.d("ERROR1", response);
-            }
-            return response;
-        }
-
-        @Override
-        protected void onPostExecute(String s){
-            super.onPostExecute(s);
-            if (true) { // !s.equals("")
-                try {
-                    list = new Gson().fromJson(s, IndivAllAccInfoData.class);
-                    if(list.getDataBody().getGRID().size() > 0 ){
-
-                    }
-                }
-                catch (Exception e) {
-                    Log.d("ERROR2", "e.getMessage()");
-                    ErrorNotify(s + "\n" + e.getMessage());
-                }
-            }
-            else {
-                Log.d("ERROR3", s);
-                ErrorNotify(s);
-            }
-        }
-    }
 
     public class AccBasicInfoTask extends AsyncTask<String, String, String> {
 

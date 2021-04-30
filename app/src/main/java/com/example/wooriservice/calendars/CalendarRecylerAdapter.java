@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -36,8 +37,8 @@ public class CalendarRecylerAdapter extends RecyclerView.Adapter<CalendarRecyler
                 }
             });
             // 뷰 객체에 대한 참조. (hold strong reference)
-            textView1 = itemView.findViewById(R.id.title2) ;
-            textView2 = itemView.findViewById(R.id.term2) ;
+            textView1 = itemView.findViewById(R.id.txt_memo);
+            textView2 = itemView.findViewById(R.id.category) ;
         }
     }
 

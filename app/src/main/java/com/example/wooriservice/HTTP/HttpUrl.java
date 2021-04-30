@@ -2,12 +2,16 @@ package com.example.wooriservice.HTTP;
 
 import android.util.Log;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.URL;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+import java.util.ArrayList;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
@@ -96,8 +100,9 @@ public class HttpUrl {
             BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
             while ((inputLine = in.readLine()) != null){
                 outResult.append(inputLine);
-//                Log.d("HttpProcess", "중간점검" + outResult);
             }
+
+            Log.d("HttpProcess", "중간점검" + outResult);
 
             Log.d("HttpProcess", "중간점검3");
 
