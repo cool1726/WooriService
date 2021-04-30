@@ -146,6 +146,9 @@ public class Myacc extends Fragment {
                     JSONArray jsonArray = new JSONArray(result);
                     Log.d("JSONARRAY", Integer.toString(jsonArray.length()));
                     for(int i = 0; i < jsonArray.length(); i++){
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        String date = jsonObject.getString("TRN_DT");
+                        Log.d("jsonarray", date);
                         results.add(jsonArray.getString(i));
                     }
                 } catch (Exception e) {
