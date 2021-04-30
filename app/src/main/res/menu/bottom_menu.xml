@@ -4,16 +4,19 @@
     <item
         android:id="@+id/MyAcc"
         android:enabled="true"
-        android:title="MyA"/>
+        android:title="MY계좌"
+        android:icon="@drawable/ic_home"/>
 
     <item
         android:id="@+id/calendars"
         android:enabled="true"
-        android:title="캘린더"/>
+        android:title="캘린더"
+        android:icon="@drawable/ic_calendar"/>
 
     <item
         android:id="@+id/reports"
         android:enabled="true"
-        android:title="리포트"/>
+        android:title="리포트"
+        android:icon="@drawable/ic_analysis"/>
 
 </menu>
