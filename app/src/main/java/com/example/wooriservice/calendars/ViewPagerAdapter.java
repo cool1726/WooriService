@@ -26,14 +26,14 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<com.example.wooriserv
 
     private ArrayList<CalendarView> calendarList;
     private Context mContext;
-    private ArrayList<Pair<String, String>> colorList;
+    private ArrayList<ArrayList<String>> colorList;
 
     int year = 2021;
     int month = 0;
 
     int pos = 0;
 
-    ViewPagerAdapter(Context context, ArrayList<CalendarView> calendarList, ArrayList<Pair<String, String>> colorList) {
+    ViewPagerAdapter(Context context, ArrayList<CalendarView> calendarList, ArrayList<ArrayList<String>> colorList) {
         this.calendarList = calendarList;
         this.mContext = context;
         this.colorList = colorList;

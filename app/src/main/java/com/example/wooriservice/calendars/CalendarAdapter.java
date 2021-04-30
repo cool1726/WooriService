@@ -2,6 +2,8 @@ package com.example.wooriservice.calendars;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
@@ -13,8 +15,20 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.wooriservice.MainActivity;
 import com.example.wooriservice.R;
+import com.example.wooriservice.myacc.Myacc;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.lang.ref.WeakReference;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -26,13 +40,15 @@ public class CalendarAdapter extends ArrayAdapter<Date> implements View.OnClickL
     private ArrayList<Date> days;
     boolean isRecyclerViewVisible = false;
     static RecyclerView recyclerView2;
+    static ArrayList<ArrayList<String>> translists;
     Context mcontext;
+
 
     View view;
 
     String mColor = "";
 
-    private ArrayList<Pair<String, String>> colorList;
+    private ArrayList<ArrayList<String>> colorList;
 
     // 날짜 클릭을 위한 Listener 인터페이스 정의
     public interface CalClickListener {
@@ -41,7 +57,7 @@ public class CalendarAdapter extends ArrayAdapter<Date> implements View.OnClickL
 
     private CalClickListener calClickListener;
 
-    public CalendarAdapter(Context context, ArrayList<Pair<String, String>> colorList, ArrayList<Date> days, int inputMonth, int position, ViewGroup parent) {
+    public CalendarAdapter(Context context, ArrayList<ArrayList<String>> colorList, ArrayList<Date> days, int inputMonth, int position, ViewGroup parent) {
         super(context, R.layout.days_datenum, days);
         this.mcontext = context;
         this.inputMonth = inputMonth;
@@ -53,6 +69,10 @@ public class CalendarAdapter extends ArrayAdapter<Date> implements View.OnClickL
 
     public static void setRecyler(RecyclerView recyclerView3) {
         recyclerView2 = recyclerView3;
+
+    }
+    public static void setTransList(ArrayList<ArrayList<String>> translist) {
+        translists = translist;
 
     }
 
@@ -99,25 +119,57 @@ public class CalendarAdapter extends ArrayAdapter<Date> implements View.OnClickL
         }
 
         // 일기 데이터 저장할 날짜 key 값
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
         String intentDate = dateFormat.format(calendar.getTime());
-
-        for(Pair<String, String> color : colorList) {
-            if(intentDate.equals(color.first)){
-                imgColor.setColorFilter(Color.parseColor(color.second));
+//
+//        imgColor.setColorFilter(Color.BLUE);
+        for(ArrayList<String> list : colorList){
+            if(intentDate.equals(list.get(0))){
+                imgColor.setImageResource(R.drawable.hexagonyellow);
                 break;
             }
         }
+        translists = colorList;
+
 
         view.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                isRecyclerViewVisible = !isRecyclerViewVisible;
-                if(isRecyclerViewVisible) {
-                    recyclerView2.setVisibility(View.VISIBLE);
-                } else {
-                    recyclerView2.setVisibility(View.INVISIBLE);
+                Log.d("VIVIEIW", view.toString());
+                if(intentDate.equals(colorList.get(0).get(0))){
+                    Log.d("date", intentDate);
+                }else{
+                    Log.d("trnas", colorList.get(0).get(0)+" "+intentDate);
                 }
+//                isRecyclerViewVisible = !isRecyclerViewVisible;
+//                if(isRecyclerViewVisible) {
+//                    recyclerView2.setVisibility(View.VISIBLE);
+//                } else {
+//                    recyclerView2.setVisibility(View.INVISIBLE);
+//                }
+                ArrayList<ArrayList<String>> lists = new ArrayList<>();
+                for (ArrayList<String> list : colorList) {
+                    ArrayList<String> tdata = new ArrayList<>();
+                    if (intentDate.equals(list.get(0))) {
+                        tdata.add(list.get(0));
+                        String time = list.get(1);
+                        String timef = time.substring(0, 2) + ":" + time.substring(2, 4);
+                        tdata.add(timef);
+                        tdata.add(list.get(2));
+                        int money = Integer.parseInt(list.get(3));
+                        DecimalFormat myFormatter = new DecimalFormat("###,###");
+                        String formattedStringPrice = "-" + myFormatter.format(money) + "원";
+                        tdata.add(formattedStringPrice);
+                        tdata.add(list.get(4));
+                        tdata.add(list.get(5));
+                        tdata.add(list.get(6));
+                        lists.add(tdata);
+                    }
+                }
+                CalendarRecylerAdapter adapter = new CalendarRecylerAdapter(lists) ;
+                recyclerView2.setAdapter(adapter);
+
+                CalendarAdapter.setRecyler(recyclerView2);
 
 
                 if (imgColor.getColorFilter() == null) {
@@ -131,7 +183,6 @@ public class CalendarAdapter extends ArrayAdapter<Date> implements View.OnClickL
                 }
             }
         });
-
         return view;
     }
 
