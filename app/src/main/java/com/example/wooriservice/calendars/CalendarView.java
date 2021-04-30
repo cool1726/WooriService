@@ -27,8 +27,6 @@ public class CalendarView extends LinearLayout {
 
     private void assignUIElements() {
         // layout is inflated, assign local variables to components
-        arrowUp = findViewById(R.id.bt_cal_up);
-        arrowDown = findViewById(R.id.bt_cal_down);
         txtMonth = findViewById(R.id.title_month);
         header = findViewById(R.id.days_header);
         gridView = findViewById(R.id.days_grid);

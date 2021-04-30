@@ -14,8 +14,10 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/days_header"
         app:layout_constraintVertical_chainStyle="packed"
-        android:text="2020年 4月"
-        android:textSize="30sp"
+        android:text="2021년 05월"
+        android:fontFamily="@font/ns_ac_eb"
+        android:textColor="@color/black"
+        android:textSize="18sp"
         android:lineSpacingExtra ="10dp"
         android:paddingBottom="10dp"
         tools:ignore="RtlSymmetry" />
@@ -39,8 +41,8 @@
             android:gravity="center_horizontal"
             android:textColor="#E33B3B"
             android:textSize="16sp"
-            android:textStyle="bold"
-            android:text="S"/>
+            android:fontFamily="@font/scdream5"
+            android:text="일"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -48,8 +50,8 @@
             android:gravity="center_horizontal"
             android:textColor="#222222"
             android:textSize="16sp"
-            android:textStyle="bold"
-            android:text="M"/>
+            android:fontFamily="@font/scdream5"
+            android:text="월"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -57,8 +59,8 @@
             android:gravity="center_horizontal"
             android:textColor="#222222"
             android:textSize="16sp"
-            android:textStyle="bold"
-            android:text="T"/>
+            android:fontFamily="@font/scdream5"
+            android:text="화"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -66,8 +68,8 @@
             android:gravity="center_horizontal"
             android:textColor="#222222"
             android:textSize="16sp"
-            android:textStyle="bold"
-            android:text="W"/>
+            android:fontFamily="@font/scdream5"
+            android:text="수"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -75,8 +77,8 @@
             android:gravity="center_horizontal"
             android:textColor="#222222"
             android:textSize="16sp"
-            android:textStyle="bold"
-            android:text="T"/>
+            android:fontFamily="@font/scdream5"
+            android:text="목"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -84,8 +86,8 @@
             android:gravity="center_horizontal"
             android:textColor="#222222"
             android:textSize="16sp"
-            android:textStyle="bold"
-            android:text="F"/>
+            android:fontFamily="@font/scdream5"
+            android:text="금"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -93,8 +95,8 @@
             android:gravity="center_horizontal"
             android:textColor="#8F8F8F"
             android:textSize="16sp"
-            android:textStyle="bold"
-            android:text="S"/>
+            android:fontFamily="@font/scdream5"
+            android:text="토"/>
 
     </LinearLayout>
 

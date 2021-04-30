@@ -126,7 +126,7 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<com.example.wooriserv
                 calendar.set(Calendar.YEAR, year);
 
             // update grid
-            holder.txtMonth.setText(String.valueOf(year) + "年 \n" + String.valueOf(month + 1) + "月");
+            holder.txtMonth.setText(String.valueOf(year) + "년 " + String.valueOf(month + 1) + "월");
             CalendarAdapter calendarAdapter = new CalendarAdapter(holder.context, colorList, cells, calendar.get(Calendar.MONTH), position, holder.parent);
             holder.gridView.setAdapter(calendarAdapter);
 
