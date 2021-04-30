@@ -40,7 +40,7 @@ public class Calendars extends Fragment {
     // DB
     private static final String TAG = "basic REST API";
     private String connMethod = "GET";
-    private String mURL = "";
+    private String mURL = "https://2gue7sszi6.execute-api.us-west-2.amazonaws.com/2021-04-30/transdata";
     private String API_KEY = "";
     private String bodyJson;
     private static final int LOAD_SUCCESS = 101;
