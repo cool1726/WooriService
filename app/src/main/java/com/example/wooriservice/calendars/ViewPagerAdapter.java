@@ -1,5 +1,6 @@
 package com.example.wooriservice.calendars;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.util.Log;
 import android.util.Pair;
@@ -28,10 +29,16 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<com.example.wooriserv
     private Context mContext;
     private ArrayList<ArrayList<String>> colorList;
 
+//    TextView txtMonth;
+    //GridView gridView;
+
     int year = 2021;
     int month = 0;
 
     int pos = 0;
+
+
+    ConstraintLayout constraintLayout; //추후 삭제
 
     ViewPagerAdapter(Context context, ArrayList<CalendarView> calendarList, ArrayList<ArrayList<String>> colorList) {
         this.calendarList = calendarList;
@@ -40,19 +47,19 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<com.example.wooriserv
     }
 
     public class ViewHolderPage extends RecyclerView.ViewHolder {
-
-        TextView txtMonth;
-        GridView gridView;
-        ConstraintLayout constraintLayout; //추후 삭제
-
+        public GridView gridView;
         ViewGroup parent;
         Context context;
 
         ViewHolderPage(View itemView, Context context, ViewGroup parent) {
             super(itemView);
-            txtMonth = itemView.findViewById(R.id.title_month);
+
+//            txtMonth = parent.findViewById(R.id.title_month);
             gridView = itemView.findViewById(R.id.days_grid);
-            constraintLayout = itemView.findViewById(R.id.cal_layout); //추후 삭제
+
+            Log.d("SSSSSSSSSSSSSS", itemView.toString());
+            Log.d("PPPPPPPPPPPPPP", parent.toString());
+
 
             this.context = context;
             this.parent = parent;
@@ -91,8 +98,12 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<com.example.wooriserv
 
             Calendar calendar = Calendar.getInstance();
 
+            Log.d("PPPPPPPPPPPPPP", holder.parent.toString());
+//            txtMonth = holder.parent.findViewById(R.id.title_month);
+//            txtMonth.setText(Calendar.DAY_OF_MONTH);
+
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월");
-            holder.txtMonth.setText(sdf.format(mDate));
+//            txtMonth.setText(sdf.format(mDate)); //WOWOWOEWOOWEROEJROEJR
 
             year += position / 12;
             month = position % 12;
@@ -126,7 +137,7 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<com.example.wooriserv
                 calendar.set(Calendar.YEAR, year);
 
             // update grid
-            holder.txtMonth.setText(String.valueOf(year) + "년 " + String.valueOf(month + 1) + "월");
+//            holder.txtMonth.setText(String.valueOf(year) + "년 " + String.valueOf(month + 1) + "월");
             CalendarAdapter calendarAdapter = new CalendarAdapter(holder.context, colorList, cells, calendar.get(Calendar.MONTH), position, holder.parent);
             holder.gridView.setAdapter(calendarAdapter);
 

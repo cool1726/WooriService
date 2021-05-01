@@ -6,100 +6,6 @@
     android:id="@+id/cal_layout"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:id="@+id/title_month"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/days_header"
-        app:layout_constraintVertical_chainStyle="packed"
-        android:text="2021년 05월"
-        android:fontFamily="@font/ns_ac_eb"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:lineSpacingExtra ="10dp"
-        android:paddingBottom="10dp"
-        tools:ignore="RtlSymmetry" />
-
-    <LinearLayout
-        android:id="@+id/days_header"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_month"
-        app:layout_constraintBottom_toTopOf="@+id/days_grid"
-        app:layout_constraintVertical_chainStyle="packed">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:textColor="#E33B3B"
-            android:textSize="16sp"
-            android:fontFamily="@font/scdream5"
-            android:text="일"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:textColor="#222222"
-            android:textSize="16sp"
-            android:fontFamily="@font/scdream5"
-            android:text="월"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:textColor="#222222"
-            android:textSize="16sp"
-            android:fontFamily="@font/scdream5"
-            android:text="화"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:textColor="#222222"
-            android:textSize="16sp"
-            android:fontFamily="@font/scdream5"
-            android:text="수"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:textColor="#222222"
-            android:textSize="16sp"
-            android:fontFamily="@font/scdream5"
-            android:text="목"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:textColor="#222222"
-            android:textSize="16sp"
-            android:fontFamily="@font/scdream5"
-            android:text="금"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:textColor="#8F8F8F"
-            android:textSize="16sp"
-            android:fontFamily="@font/scdream5"
-            android:text="토"/>
-
-    </LinearLayout>
-
     <GridView
         android:id="@+id/days_grid"
         android:layout_width="match_parent"
@@ -111,7 +17,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/days_header"
-        app:layout_constraintVertical_chainStyle="packed"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        android:background="@color/white"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

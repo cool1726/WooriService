@@ -8,7 +8,39 @@
     <color name="mild_purple">#B87AFF</color>
 
     <color name="white">#FFFFFFFF</color>
+    <color name="lighter_gray">#EFEFEF</color>
     <color name="light_gray">#DCDCDC</color>
     <color name="gray">#AAAAAA</color>
     <color name="black">#FF000000</color>
+
+    <color name="식비">#F44336</color>
+    <color name="배달">#F14781</color>
+    <color name="생활">#E46740</color>
+    <color name="카페디저트">#9A160C</color>
+    <color name="술유흥">#A1554F</color>
+
+    <color name="교통">#009688</color>
+    <color name="택시">#4CAF50</color>
+    <color name="대중교통">#1F8C23</color>
+
+    <color name="운동">#2A8DBA</color>
+    <color name="편의점">#007DE1</color>
+    <color name="자동차">#3F51B5</color>
+    <color name="의료건강">#001E4C</color>
+
+    <color name="교육학습">#ECD331</color>
+    <color name="자녀육아">#FFC107</color>
+    <color name="반려동물">#A58423</color>
+    <color name="문화여가">#A8B618</color>
+    <color name="여행숙박">#6E4100</color>
+
+    <color name="온라인쇼핑">#8E5DE4</color>
+    <color name="오프라인쇼핑">#9357FF</color>
+    <color name="뷰티미용">#5C00FF</color>
+    <color name="서비스구독">#790C8C</color>
+
+    <color name="기타">#A1A1A1</color>
+    <color name="금융">#616161</color>
+    <color name="경조선물">#2B2B2B</color>
+    <color name="주거통신">#000000</color>
 </resources>

@@ -2,36 +2,190 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/days_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginLeft="20dp"
-    android:layout_marginRight="20dp">
+    android:layout_marginRight="20dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginBottom="5dp">
 
-    <TextView
-        android:id="@+id/title_days"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/cal_header"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/paybooc_bold"
-        android:text="위비리치"
-        android:textColor="@color/dark_blue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/pager"
+        android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed"/>
+        app:layout_constraintBottom_toTopOf="@id/days_header"
+        app:layout_constraintVertical_chainStyle="packed"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/title_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2021년 04월"
+            android:layout_weight="1"
+            android:fontFamily="@font/ns_ac_eb"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:paddingBottom="10dp"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/days_header"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cal_header"
+        app:layout_constraintBottom_toTopOf="@+id/pager"
+        app:layout_constraintVertical_chainStyle="packed">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:textColor="#E33B3B"
+            android:textSize="16sp"
+            android:fontFamily="@font/asdgn_b"
+            android:text="일"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:textColor="#222222"
+            android:textSize="16sp"
+            android:fontFamily="@font/asdgn_b"
+            android:text="월"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:textColor="#222222"
+            android:textSize="16sp"
+            android:fontFamily="@font/asdgn_b"
+            android:text="화"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:textColor="#222222"
+            android:textSize="16sp"
+            android:fontFamily="@font/asdgn_b"
+            android:text="수"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:textColor="#222222"
+            android:textSize="16sp"
+            android:fontFamily="@font/asdgn_b"
+            android:text="목"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:textColor="#222222"
+            android:textSize="16sp"
+            android:fontFamily="@font/asdgn_b"
+            android:text="금"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:textColor="#8F8F8F"
+            android:textSize="16sp"
+            android:fontFamily="@font/asdgn_b"
+            android:text="토"/>
+
+    </LinearLayout>
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/pager"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="300dp"
         android:orientation="vertical"
-        android:background="@drawable/boarder_layout"
+        app:layout_constraintBottom_toTopOf="@id/date_part"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/days_header"
+        app:layout_constraintVertical_chainStyle="packed" >
+    </androidx.viewpager2.widget.ViewPager2>
+
+    <LinearLayout
+        android:id="@+id/date_part"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/pager"
         app:layout_constraintBottom_toTopOf="@id/caltransview"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title_days"
-        app:layout_constraintVertical_chainStyle="packed" >
-    </androidx.viewpager2.widget.ViewPager2>
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp">
+        <TextView
+            android:id="@+id/datetext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/asdgn_b"
+            android:text="11일 일요일"
+            android:textSize="18dp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="10dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/datecount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="총 0건"
+                android:layout_weight="1"
+                android:textSize="15dp"
+                android:textColor="@color/gray"
+                android:fontFamily="@font/asdgn_m"
+                />
+            <TextView
+                android:id="@+id/datesum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0원"
+                android:layout_weight="1"
+                android:textSize="15dp"
+                android:letterSpacing="-0.03"
+                android:textColor="@color/gray"
+                android:fontFamily="@font/asdgn_m"
+                android:textAlignment="textEnd"/>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/divider_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/lighter_gray"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"/>
+
+    </LinearLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/caltransview"
@@ -40,7 +194,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/pager"
+        app:layout_constraintTop_toBottomOf="@id/date_part"
         app:layout_constraintVertical_chainStyle="packed" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

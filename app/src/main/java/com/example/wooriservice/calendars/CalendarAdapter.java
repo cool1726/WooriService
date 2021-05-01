@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
+import android.text.Layout;
 import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
@@ -11,8 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wooriservice.MainActivity;
@@ -28,11 +31,14 @@ import java.io.InputStreamReader;
 import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class CalendarAdapter extends ArrayAdapter<Date> implements View.OnClickListener {
     private LayoutInflater inflater;
@@ -43,6 +49,11 @@ public class CalendarAdapter extends ArrayAdapter<Date> implements View.OnClickL
     static ArrayList<ArrayList<String>> translists;
     Context mcontext;
 
+    ConstraintLayout container;
+    static TextView datetext;
+    static TextView titlemonth;
+    static TextView datecount;
+    static TextView datesum;
 
     View view;
 
@@ -75,6 +86,13 @@ public class CalendarAdapter extends ArrayAdapter<Date> implements View.OnClickL
         translists = translist;
 
     }
+    public static void setText1(TextView txt1, TextView txt2, TextView txt3, TextView txt4) {
+        datetext = txt1;
+        titlemonth = txt2;
+        datecount = txt3;
+        datesum = txt4;
+
+    }
 
     public View getView(int position, View view, ViewGroup parent) {
         // 매일의 날짜 레이아웃 만들어둔 days_datenum을 inflate
@@ -82,6 +100,11 @@ public class CalendarAdapter extends ArrayAdapter<Date> implements View.OnClickL
             view = inflater.inflate(R.layout.days_dater, parent, false);
 
         this.view = view;
+
+//        LayoutInflater inflater = (LayoutInflater) mcontext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//        inflater.inflate(R.layout.days, container, true);
+
+//        TextView datetext = container.findViewById(R.id.datetext);
 
         Calendar calendar = Calendar.getInstance();
         Date date = getItem(position);
@@ -99,7 +122,6 @@ public class CalendarAdapter extends ArrayAdapter<Date> implements View.OnClickL
         TextView txtDate = view.findViewById(R.id.txt_date);
         ImageView imgColor = view.findViewById(R.id.img_date);
         //txtDate.setTypeface(null, Typeface.NORMAL);
-        txtDate.setTextColor(Color.BLACK);
 
         txtDate.setText(String.valueOf(calendar.get(Calendar.DATE)));
 
@@ -121,20 +143,36 @@ public class CalendarAdapter extends ArrayAdapter<Date> implements View.OnClickL
         // 일기 데이터 저장할 날짜 key 값
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
         String intentDate = dateFormat.format(calendar.getTime());
+        SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyy년 MM월");
+        String intentMonth = dateFormat2.format(calendar.getTime());
+        titlemonth.setText(toString().valueOf(year) + "년 " + toString().valueOf(month) + "월");
+
+        SimpleDateFormat dateFormat3 = new SimpleDateFormat("E",Locale.KOREAN);
+        String weekt = dateFormat3.format(calendarToday.getTime());
+        datetext.setText(toString().valueOf(calendarToday.get(Calendar.DATE))+"일 "+weekt+"요일");
+
+
 //
 //        imgColor.setColorFilter(Color.BLUE);
         for(ArrayList<String> list : colorList){
             if(intentDate.equals(list.get(0))){
                 imgColor.setImageResource(R.drawable.hexagonyellow);
+                txtDate.setTextColor(getContext().getColor(R.color.black));
                 break;
             }
         }
         translists = colorList;
 
 
+
         view.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+//                SimpleDateFormat dateFormat3 = new SimpleDateFormat("E",Locale.KOREAN);
+                String weekd = dateFormat3.format(calendar.getTime());
+
+                String day = intentDate.substring(6, 8);
+                datetext.setText(day+"일 "+weekd+"요일");
                 Log.d("VIVIEIW", view.toString());
                 if(intentDate.equals(colorList.get(0).get(0))){
                     Log.d("date", intentDate);
@@ -147,7 +185,11 @@ public class CalendarAdapter extends ArrayAdapter<Date> implements View.OnClickL
 //                } else {
 //                    recyclerView2.setVisibility(View.INVISIBLE);
 //                }
+
+
+
                 ArrayList<ArrayList<String>> lists = new ArrayList<>();
+                int temp = 0;
                 for (ArrayList<String> list : colorList) {
                     ArrayList<String> tdata = new ArrayList<>();
                     if (intentDate.equals(list.get(0))) {
@@ -156,18 +198,33 @@ public class CalendarAdapter extends ArrayAdapter<Date> implements View.OnClickL
                         String timef = time.substring(0, 2) + ":" + time.substring(2, 4);
                         tdata.add(timef);
                         tdata.add(list.get(2));
-                        int money = Integer.parseInt(list.get(3));
-                        DecimalFormat myFormatter = new DecimalFormat("###,###");
-                        String formattedStringPrice = "-" + myFormatter.format(money) + "원";
-                        tdata.add(formattedStringPrice);
+                        tdata.add(list.get(3));
                         tdata.add(list.get(4));
                         tdata.add(list.get(5));
                         tdata.add(list.get(6));
                         lists.add(tdata);
+
+                        int rcvmoney = Integer.parseInt(list.get(2));
+                        int paymoney = Integer.parseInt(list.get(3));
+                        if(rcvmoney > paymoney){
+                            temp += rcvmoney;
+                        } else {
+                            temp -=paymoney;
+                        }
+
                     }
                 }
+//
+
+
                 CalendarRecylerAdapter adapter = new CalendarRecylerAdapter(lists) ;
                 recyclerView2.setAdapter(adapter);
+
+
+                datecount.setText("총 "+toString().valueOf(lists.size())+"건");
+                DecimalFormat myFormatter = new DecimalFormat("###,###");
+                String formattedStringPrice = myFormatter.format(temp) + "원";
+                datesum.setText(formattedStringPrice);
 
                 CalendarAdapter.setRecyler(recyclerView2);
 
