@@ -52,7 +52,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.content.Context.NOTIFICATION_SERVICE;
-import static com.example.wooriservice.MainActivity.getIndivAllAccInfo;
 
 public class Myacc extends Fragment {
     private View view;
