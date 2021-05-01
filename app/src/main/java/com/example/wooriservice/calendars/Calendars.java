@@ -55,24 +55,13 @@ public class Calendars extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.days, container, false);
 
-//        ArrayList<String> lists = new ArrayList<>();
-//        String getTime ="이** 씨는 나에게";
-//        for (int i=0; i<2; i++) {
-//            lists.add(getTime + " ") ;
-//        }
         getJSON(mURL, connMethod);
 
         // 리사이클러뷰에 LinearLayoutManager 객체 지정.
         recyclerView2 = view.findViewById(R.id.caltransview) ;
         recyclerView2.setLayoutManager(new LinearLayoutManager(getContext())) ;
 
-
-        // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
-//        CalendarRecylerAdapter adapter = new CalendarRecylerAdapter(lists) ;
-//        recyclerView2.setAdapter(adapter);
-//
         CalendarAdapter.setRecyler(recyclerView2);
-
 
         return view;
     }
@@ -117,7 +106,7 @@ public class Calendars extends Fragment {
         viewPager2.setAdapter(new ViewPagerAdapter(getContext(), list, translist));
         viewPager2.setOrientation(ViewPager2.ORIENTATION_VERTICAL);
 
-        viewPager2.setCurrentItem(5, false);
+        viewPager2.setCurrentItem(4, false);
 
     }
 
@@ -153,7 +142,6 @@ public class Calendars extends Fragment {
             }
         }
     }
-
 
 
     public void  getJSON(final String mUrl, final String connMethod) {
@@ -193,8 +181,6 @@ public class Calendars extends Fragment {
                         sb.append(line);
                     }
                     Log.d("DB SUCCESS", "성공2");
-
-
 
                     bufferedReader.close();
                     httpURLConnection.disconnect();

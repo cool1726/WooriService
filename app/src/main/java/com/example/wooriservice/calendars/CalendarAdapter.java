@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
+import android.text.Layout;
 import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
@@ -11,8 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wooriservice.MainActivity;
@@ -43,6 +46,7 @@ public class CalendarAdapter extends ArrayAdapter<Date> implements View.OnClickL
     static ArrayList<ArrayList<String>> translists;
     Context mcontext;
 
+    ConstraintLayout container;
 
     View view;
 
@@ -83,6 +87,11 @@ public class CalendarAdapter extends ArrayAdapter<Date> implements View.OnClickL
 
         this.view = view;
 
+        LayoutInflater inflater = (LayoutInflater) mcontext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        inflater.inflate(R.layout.days, container, true);
+
+//        TextView datetext = container.findViewById(R.id.datetext);
+
         Calendar calendar = Calendar.getInstance();
         Date date = getItem(position);
 
@@ -99,7 +108,6 @@ public class CalendarAdapter extends ArrayAdapter<Date> implements View.OnClickL
         TextView txtDate = view.findViewById(R.id.txt_date);
         ImageView imgColor = view.findViewById(R.id.img_date);
         //txtDate.setTypeface(null, Typeface.NORMAL);
-        txtDate.setTextColor(Color.BLACK);
 
         txtDate.setText(String.valueOf(calendar.get(Calendar.DATE)));
 
@@ -126,6 +134,7 @@ public class CalendarAdapter extends ArrayAdapter<Date> implements View.OnClickL
         for(ArrayList<String> list : colorList){
             if(intentDate.equals(list.get(0))){
                 imgColor.setImageResource(R.drawable.hexagonyellow);
+                txtDate.setTextColor(getContext().getColor(R.color.black));
                 break;
             }
         }
@@ -147,6 +156,9 @@ public class CalendarAdapter extends ArrayAdapter<Date> implements View.OnClickL
 //                } else {
 //                    recyclerView2.setVisibility(View.INVISIBLE);
 //                }
+
+
+
                 ArrayList<ArrayList<String>> lists = new ArrayList<>();
                 for (ArrayList<String> list : colorList) {
                     ArrayList<String> tdata = new ArrayList<>();
@@ -156,16 +168,35 @@ public class CalendarAdapter extends ArrayAdapter<Date> implements View.OnClickL
                         String timef = time.substring(0, 2) + ":" + time.substring(2, 4);
                         tdata.add(timef);
                         tdata.add(list.get(2));
-                        int money = Integer.parseInt(list.get(3));
-                        DecimalFormat myFormatter = new DecimalFormat("###,###");
-                        String formattedStringPrice = "-" + myFormatter.format(money) + "원";
-                        tdata.add(formattedStringPrice);
+                        tdata.add(list.get(3));
                         tdata.add(list.get(4));
                         tdata.add(list.get(5));
                         tdata.add(list.get(6));
                         lists.add(tdata);
+//                        Log.d("LIST2", list.get(2));
+//                        Log.d("LIST2"m )
+//                        if(Integer.parseInt(list.get(2)) == 0) { // (3) PAY_AM 소비한 돈
+//                            tdata.add(list.get(2));
+//                            int money = Integer.parseInt(list.get(3));
+//                            DecimalFormat myFormatter = new DecimalFormat("###,###");
+//                            String formattedStringPrice = "-" + myFormatter.format(money) + "원";
+//                            tdata.add(formattedStringPrice);
+//                        } else { // (2) RCV_AM  받은 돈
+//                            int money = Integer.parseInt(list.get(2));
+//                            DecimalFormat myFormatter = new DecimalFormat("###,###");
+//                            String formattedStringPrice = "+" + myFormatter.format(money) + "원";
+//                            tdata.add(formattedStringPrice);
+//                            tdata.add(list.get(3));
+//                        }
+//                        tdata.add(list.get(4));
+//                        tdata.add(list.get(5));
+//                        tdata.add(list.get(6));
+//                        lists.add(tdata);
                     }
                 }
+
+                DateAdapter dadapter = new DateAdapter(intentDate);
+
                 CalendarRecylerAdapter adapter = new CalendarRecylerAdapter(lists) ;
                 recyclerView2.setAdapter(adapter);
 
