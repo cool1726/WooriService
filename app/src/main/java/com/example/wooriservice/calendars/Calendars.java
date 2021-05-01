@@ -8,6 +8,7 @@ import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -60,8 +61,13 @@ public class Calendars extends Fragment {
         // 리사이클러뷰에 LinearLayoutManager 객체 지정.
         recyclerView2 = view.findViewById(R.id.caltransview) ;
         recyclerView2.setLayoutManager(new LinearLayoutManager(getContext())) ;
+        TextView textView = view.findViewById(R.id.datetext);
+        TextView textView2 = view.findViewById(R.id.title_month);
+        TextView textView3 = view.findViewById(R.id.datecount);
+        TextView textView4 = view.findViewById(R.id.datesum);
 
         CalendarAdapter.setRecyler(recyclerView2);
+        CalendarAdapter.setText1(textView, textView2, textView3, textView4);
 
         return view;
     }

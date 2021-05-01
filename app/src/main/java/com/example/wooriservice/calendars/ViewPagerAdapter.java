@@ -1,5 +1,6 @@
 package com.example.wooriservice.calendars;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.util.Log;
 import android.util.Pair;
@@ -28,12 +29,15 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<com.example.wooriserv
     private Context mContext;
     private ArrayList<ArrayList<String>> colorList;
 
+//    TextView txtMonth;
+    //GridView gridView;
+
     int year = 2021;
     int month = 0;
 
     int pos = 0;
 
-//    TextView txtMonth;
+
     ConstraintLayout constraintLayout; //추후 삭제
 
     ViewPagerAdapter(Context context, ArrayList<CalendarView> calendarList, ArrayList<ArrayList<String>> colorList) {
@@ -43,15 +47,14 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<com.example.wooriserv
     }
 
     public class ViewHolderPage extends RecyclerView.ViewHolder {
-
+        public GridView gridView;
         ViewGroup parent;
         Context context;
-        GridView gridView;
 
         ViewHolderPage(View itemView, Context context, ViewGroup parent) {
             super(itemView);
 
-//            txtMonth = itemView.findViewById(R.id.title_month);
+//            txtMonth = parent.findViewById(R.id.title_month);
             gridView = itemView.findViewById(R.id.days_grid);
 
             Log.d("SSSSSSSSSSSSSS", itemView.toString());
