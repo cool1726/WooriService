@@ -65,9 +65,10 @@ public class Calendars extends Fragment {
         TextView textView2 = view.findViewById(R.id.title_month);
         TextView textView3 = view.findViewById(R.id.datecount);
         TextView textView4 = view.findViewById(R.id.datesum);
+        View popupAsk = getLayoutInflater().inflate(R.layout.popup_edit, null);
 
         CalendarAdapter.setRecyler(recyclerView2);
-        CalendarAdapter.setText1(textView, textView2, textView3, textView4);
+        CalendarAdapter.setText1(textView, textView2, textView3, textView4, popupAsk);
 
         return view;
     }
@@ -101,6 +102,7 @@ public class Calendars extends Fragment {
     public void onResume() {
         super.onResume();
 
+        getJSON(mURL, connMethod);
 
         /* handler 기능 */
         ArrayList<CalendarView> list = new ArrayList<>();
@@ -204,6 +206,7 @@ public class Calendars extends Fragment {
                         String bal = jsonObject.getString("DPS_BAL");
                         String trntext = jsonObject.getString("TRN_TXT");
                         String category = jsonObject.getString("CATEGORY");
+                        String id = jsonObject.getString("TRN_SRNO");
                         trans.add(date);
                         trans.add(time);
                         trans.add(rcvam);
@@ -211,6 +214,7 @@ public class Calendars extends Fragment {
                         trans.add(bal);
                         trans.add(trntext);
                         trans.add(category);
+                        trans.add(id);
                         translist.add(trans);
                         Log.d("Lg", trans.get(0));
                     }

@@ -54,6 +54,7 @@ public class CalendarAdapter extends ArrayAdapter<Date> implements View.OnClickL
     static TextView titlemonth;
     static TextView datecount;
     static TextView datesum;
+    static View popupAsk;
 
     View view;
 
@@ -86,12 +87,12 @@ public class CalendarAdapter extends ArrayAdapter<Date> implements View.OnClickL
         translists = translist;
 
     }
-    public static void setText1(TextView txt1, TextView txt2, TextView txt3, TextView txt4) {
+    public static void setText1(TextView txt1, TextView txt2, TextView txt3, TextView txt4, View popup) {
         datetext = txt1;
         titlemonth = txt2;
         datecount = txt3;
         datesum = txt4;
-
+        popupAsk = popup;
     }
 
     public View getView(int position, View view, ViewGroup parent) {
@@ -202,6 +203,7 @@ public class CalendarAdapter extends ArrayAdapter<Date> implements View.OnClickL
                         tdata.add(list.get(4));
                         tdata.add(list.get(5));
                         tdata.add(list.get(6));
+                        tdata.add(list.get(7));
                         lists.add(tdata);
 
                         int rcvmoney = Integer.parseInt(list.get(2));
@@ -217,7 +219,7 @@ public class CalendarAdapter extends ArrayAdapter<Date> implements View.OnClickL
 //
 
 
-                CalendarRecylerAdapter adapter = new CalendarRecylerAdapter(lists) ;
+                CalendarRecylerAdapter adapter = new CalendarRecylerAdapter(lists, popupAsk) ;
                 recyclerView2.setAdapter(adapter);
 
 
