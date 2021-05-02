@@ -55,6 +55,7 @@ import java.util.Set;
 
 public class Report_Content extends AppCompatActivity {
     private LineChart linechart;
+    private LineChart linechart2;
     private BarChart barchart;
     private PieChart pieChart;
     static ArrayList<ArrayList<String>> translist = new ArrayList<>();
@@ -81,6 +82,7 @@ public class Report_Content extends AppCompatActivity {
             e.printStackTrace();
         }
         drawPiechart();
+        drawLinechart2();
 
 
 
@@ -167,8 +169,8 @@ public class Report_Content extends AppCompatActivity {
         }
 
         for(int b = 0; b <7; b++){
-            values.add(new BarEntry(b, val.get(b)));
-            values2.add(new BarEntry(b, val2.get(b)));
+            values.add(new BarEntry(b, val.get(b)/1000));
+            values2.add(new BarEntry(b, val2.get(b)/1000));
         }
 
 
@@ -214,10 +216,10 @@ public class Report_Content extends AppCompatActivity {
 
         // black lines and points
         linechart.setBackgroundColor(Color.WHITE);
-        set1.setColor(Color.GRAY);
-        set1.setCircleColor(Color.GRAY);
-        set2.setColor(Color.BLUE);
-        set2.setCircleColor(Color.BLUE);
+        set1.setColor(R.color.light_gray);
+        set1.setCircleColor(R.color.light_gray);
+        set2.setColor(R.color.mild_blue);
+        set2.setCircleColor(R.color.mild_blue);
         linechart.getLegend().setEnabled(false);
 
         // set data
@@ -253,7 +255,7 @@ public class Report_Content extends AppCompatActivity {
         }
 
         for(int b = 0; b <7; b++){
-            values.add(new BarEntry(b, val.get(b)));
+            values.add(new BarEntry(b, val.get(b)/1000));
         }
         ArrayList<String> xAxisLabel = new ArrayList<>();
         xAxisLabel.add("월");
@@ -265,7 +267,7 @@ public class Report_Content extends AppCompatActivity {
         xAxisLabel.add("일");
 
         BarDataSet set1 = new BarDataSet(values, "DataSet 1");
-        set1.setColors(ColorTemplate.PASTEL_COLORS);
+        set1.setColors(new int[]{R.color.light_skyblue, R.color.mild_blue, R.color.dark_blue, R.color.운동, R.color.편의점, R.color.자동차, R.color.의료건강}, getApplicationContext());
         BarData data = new BarData(set1);
 
         XAxis xAxis = barchart.getXAxis(); // x 축 설정
@@ -326,8 +328,7 @@ public class Report_Content extends AppCompatActivity {
 
 
         PieDataSet set1 = new PieDataSet(values, "DataSet 1");
-        set1.setColors(ColorTemplate.VORDIPLOM_COLORS);
-//        set1.setColors(Color.BLUE, Color. Color.LTGRAY);
+        set1.setColors(new int[]{R.color.문화여가, R.color.온라인쇼핑, R.color.기타, R.color.light_gray}, getApplicationContext());
         PieData data = new PieData(set1);
         data.setValueTextSize(10);
         data.setValueTextColor(Color.LTGRAY);
@@ -335,6 +336,80 @@ public class Report_Content extends AppCompatActivity {
         // set data
         pieChart.getLegend().setEnabled(false);
         pieChart.setData(data);
+
+    }
+    public void drawLinechart2() {
+
+        linechart2 = findViewById(R.id.groupimage);
+
+        ArrayList<Entry> values = new ArrayList<>();
+        ArrayList<Entry> values2 = new ArrayList<>();
+
+        values.add(new Entry(0, Integer.parseInt(report.get(0).get(10))/1000));
+        values.add(new Entry(1, Integer.parseInt(report.get(0).get(11))/1000));
+        values.add(new Entry(2, Integer.parseInt(report.get(0).get(13))/1000));
+        values.add(new Entry(3, Integer.parseInt(report.get(0).get(14))/1000));
+//        values.add(new Entry(4, Integer.parseInt(report.get(0).get(15))/1000));
+//        values.add(new Entry(5, Integer.parseInt(report.get(0).get(12))/1000));
+
+        values2.add(new Entry(0, Integer.parseInt(report.get(0).get(16))/1000));
+        values2.add(new Entry(1, Integer.parseInt(report.get(0).get(17))/1000));
+        values2.add(new Entry(2, Integer.parseInt(report.get(0).get(19))/1000));
+        values2.add(new Entry(3, Integer.parseInt(report.get(0).get(20))/1000));
+//        values2.add(new Entry(4, Integer.parseInt(report.get(0).get(21))/1000));
+//        values2.add(new Entry(5, Integer.parseInt(report.get(0).get(18))/1000));
+
+
+        LineDataSet set1;
+        set1 = new LineDataSet(values, "DataSet 1");
+        LineDataSet set2;
+        set2 = new LineDataSet(values2, "DataSet 2");
+
+        ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+        dataSets.add(set1); // add the data sets
+        dataSets.add(set2);
+
+        // create a data object with the data sets
+        LineData data = new LineData(dataSets);
+        data.setValueTextColor(Color.WHITE);
+
+        ArrayList<String> xAxisLabel = new ArrayList<>();
+        xAxisLabel.add("쇼핑");
+        xAxisLabel.add("카페");
+        xAxisLabel.add("배달");
+        xAxisLabel.add("의료");
+//        xAxisLabel.add("문화");
+//        xAxisLabel.add("기타");
+
+        XAxis xAxis = linechart2.getXAxis(); // x 축 설정
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM); //x 축 표시에 대한 위치 설정
+        xAxis.setDrawAxisLine(false);
+        xAxis.setDrawGridLines(false);// X축 줄의 컬러 설정
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(xAxisLabel));
+
+
+        YAxis yAxisLeft = linechart2.getAxisLeft();
+        yAxisLeft.setDrawGridLines(false);
+        yAxisLeft.setDrawAxisLine(false);
+        //Y축의 왼쪽면 설정
+
+        YAxis yAxisRight = linechart2.getAxisRight(); //Y축의 오른쪽면 설정
+        yAxisRight.setDrawLabels(false);
+        yAxisRight.setDrawAxisLine(false);
+        yAxisRight.setDrawGridLines(false);
+
+
+        // black lines and points
+        linechart2.setBackgroundColor(Color.WHITE);
+        set1.setColor(R.color.light_gray);
+        set1.setCircleColor(R.color.light_gray);
+        set2.setColor(R.color.mild_blue);
+        set2.setCircleColor(R.color.mild_blue);
+        linechart2.getLegend().setEnabled(false);
+
+        // set data
+        linechart2.setData(data);
+        linechart2.setDescription(null);
 
     }
 }

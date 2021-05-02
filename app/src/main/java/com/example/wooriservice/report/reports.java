@@ -169,6 +169,15 @@ public class reports extends Fragment {
                         String shopping = jsonObject.getString("shopping");
                         String cafe = jsonObject.getString("cafe");
                         String etc = jsonObject.getString("etc");
+                        String delivery= jsonObject.getString("delivery");
+                        String life  = jsonObject.getString("life");
+                        String culture = jsonObject.getString("culture");
+                        String shopping_avg = jsonObject.getString("shopping_avg");
+                        String cafe_avg = jsonObject.getString("cafe_avg");
+                        String etc_avg = jsonObject.getString("etc_avg");
+                        String delivery_avg= jsonObject.getString("delivery_avg");
+                        String life_avg  = jsonObject.getString("life_avg");
+                        String culture_avg = jsonObject.getString("culture_avg");
                         report.add(rptid);
                         report.add(commentrpt);
                         report.add(ttl_amt);
@@ -182,6 +191,15 @@ public class reports extends Fragment {
                         report.add(shopping);
                         report.add(cafe);
                         report.add(etc);
+                        report.add(delivery);
+                        report.add(life);
+                        report.add(culture);
+                        report.add(shopping_avg);
+                        report.add(cafe_avg);
+                        report.add(etc_avg);
+                        report.add(delivery_avg);
+                        report.add(life_avg);
+                        report.add(culture_avg);
                         reportlist.add(report);
                     }
                 } catch (Exception e) {
