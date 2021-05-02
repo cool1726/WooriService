@@ -57,9 +57,14 @@ public class reports extends Fragment {
         connMethod = "GET";
         getJSON(mURL, connMethod);
 
-        for (int i=0; i<10; i++) {
-            list.add(getTime + " " + i) ;
-        }
+        list.add("4월 1주차 주간 리포트");
+        list.add("3월 월간 리포트");
+        list.add("3월 4주차 주간 리포트");
+        list.add("3월 3주차 주간 리포트");
+        list.add("3월 2주차 주간 리포트");
+        list.add("3월 1주차 주간 리포트");
+        list.add("2월 월간 리포트");
+
 
         // 리사이클러뷰에 LinearLayoutManager 객체 지정.
         RecyclerView recyclerView = view.findViewById(R.id.reportsitemview) ;
@@ -161,6 +166,9 @@ public class reports extends Fragment {
                         String grp_name= jsonObject.getString("GRP_NAME");
                         String grp_comment= jsonObject.getString("GRP_COMMENT");
                         String readed = jsonObject.getString("READED");
+                        String shopping = jsonObject.getString("shopping");
+                        String cafe = jsonObject.getString("cafe");
+                        String etc = jsonObject.getString("etc");
                         report.add(rptid);
                         report.add(commentrpt);
                         report.add(ttl_amt);
@@ -171,6 +179,9 @@ public class reports extends Fragment {
                         report.add(grp_name);
                         report.add(grp_comment);
                         report.add(readed);
+                        report.add(shopping);
+                        report.add(cafe);
+                        report.add(etc);
                         reportlist.add(report);
                     }
                 } catch (Exception e) {

@@ -297,6 +297,8 @@ public class Report_Content extends AppCompatActivity {
         pieChart = findViewById(R.id.weekimage);
 
         pieChart.setUsePercentValues(true);
+        pieChart.setCenterTextSize(0);
+        pieChart.setCenterTextColor(Color.GREEN);
         pieChart.getDescription().setEnabled(false);
         pieChart.setExtraOffsets(5,10,5,5);
 
@@ -311,17 +313,24 @@ public class Report_Content extends AppCompatActivity {
         int ttl_amount = Integer.parseInt(report.get(0).get(2));
         String Maxct = report.get(0).get(4);
         int maxct_amount = Integer.parseInt(report.get(0).get(5));
+        int shopping_amt = Integer.parseInt(report.get(0).get(10));
+        int etc = Integer.parseInt(report.get(0).get(12));
 
-        int amt = ttl_amount - maxct_amount;
+        int amt = ttl_amount - maxct_amount -shopping_amt -etc;
 
-        values.add(new PieEntry(maxct_amount, 0));
-        values.add(new PieEntry(amt, 1));
+        values.add(new PieEntry(maxct_amount, Maxct));
+        values.add(new PieEntry(shopping_amt, " "));
+        values.add(new PieEntry(etc, " "));
+        values.add(new PieEntry(amt, " "));
 
 
 
         PieDataSet set1 = new PieDataSet(values, "DataSet 1");
-        set1.setColors(ColorTemplate.COLORFUL_COLORS);
+        set1.setColors(ColorTemplate.VORDIPLOM_COLORS);
+//        set1.setColors(Color.BLUE, Color. Color.LTGRAY);
         PieData data = new PieData(set1);
+        data.setValueTextSize(10);
+        data.setValueTextColor(Color.LTGRAY);
 
         // set data
         pieChart.getLegend().setEnabled(false);

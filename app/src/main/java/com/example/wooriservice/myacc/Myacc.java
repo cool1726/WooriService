@@ -132,6 +132,7 @@ public class Myacc extends Fragment {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
+                sendNotification();
             }
         });
 
@@ -161,8 +162,9 @@ public class Myacc extends Fragment {
                     bottomsheet.show(getParentFragmentManager(), "bottomsheet");
 
                 } else if (v == btnPost) {
-                    alertDialog.show();
 //                    sendNotification();
+                    alertDialog.show();
+
                 }
             }
         };
@@ -443,8 +445,8 @@ public class Myacc extends Fragment {
     // Notification Builder를 만드는 메소드
     private NotificationCompat.Builder getNotificationBuilder() {
         NotificationCompat.Builder notifyBuilder = new NotificationCompat.Builder(getContext(), PRIMARY_CHANNEL_ID)
-                .setContentTitle("You've been notified!")
-                .setContentText("This is your notification text.")
+                .setContentTitle("잔액이 100,000원 이하입니다!")
+                .setContentText("사용할 계좌의 잔액을 확인하세요.")
                 .setSmallIcon(R.drawable.ic_launcher_foreground);
         return notifyBuilder;
     }

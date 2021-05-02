@@ -99,6 +99,7 @@ public class CalendarRecylerAdapter extends RecyclerView.Adapter<CalendarRecyler
                     spinnerStr = parent.getItemAtPosition(position).toString();
                 }
 
+
                 @Override
                 public void onNothingSelected(AdapterView<?> parent) {
 
@@ -116,6 +117,13 @@ public class CalendarRecylerAdapter extends RecyclerView.Adapter<CalendarRecyler
                     String data = new Gson().toJson(request);
 //                    response = new HttpUrl().sendREST(uri, data);
                     sendJSON(mURL, "PUT", data);
+                    alertDialog.dismiss();
+                }
+            });
+            ImageButton close = popupAsk.findViewById(R.id.btnClose);
+            close.setOnClickListener(new Button.OnClickListener(){
+                @Override
+                public void onClick(View v) {
                     alertDialog.dismiss();
                 }
             });
