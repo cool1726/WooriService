@@ -56,7 +56,7 @@ public class Calendars extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.days, container, false);
 
-        getJSON(mURL, connMethod);
+//        getJSON(mURL, connMethod);
 
         // 리사이클러뷰에 LinearLayoutManager 객체 지정.
         recyclerView2 = view.findViewById(R.id.caltransview) ;
@@ -70,6 +70,7 @@ public class Calendars extends Fragment {
         CalendarAdapter.setRecyler(recyclerView2);
         CalendarAdapter.setText1(textView, textView2, textView3, textView4, popupAsk);
 
+//        translist = null;
         return view;
     }
     @Override
@@ -102,6 +103,7 @@ public class Calendars extends Fragment {
     public void onResume() {
         super.onResume();
 
+        translist = new ArrayList<>();
         getJSON(mURL, connMethod);
 
         /* handler 기능 */
