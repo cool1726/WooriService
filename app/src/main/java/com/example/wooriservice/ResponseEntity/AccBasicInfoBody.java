@@ -3,21 +3,25 @@ package com.example.wooriservice.ResponseEntity;
 import java.io.Serializable;
 
 public class AccBasicInfoBody implements Serializable {
-    private String ACNO;
+    private String ACNO;//
     private String ACT_STS;
-    private String CUCD;
+    private String CUCD;//
     private String PDCD;
-    private String CT_BAL;
-    private String NEW_DT;
-    private String XPR_DT;
+    private String CT_BAL;//
+    private String NEW_DT;//
+    private String XPR_DT;//
     private String TXPR_PDCD;
-    private String MM_PID_AM;
+    private String MM_PID_AM;//
     private String TDY_BSPR;
     private String TDY_EVL_AM;
     private String IVST_PRN;
     private String SMPL_PRFT_RT;
     private String CT_ATCNT_BAL;
-    private String LST_LN_PCS_AM;
+    private String LST_LN_PCS_AM;//
+    private String PAY_AVL_AM;
+
+    public String getPAY_AVL_AM() { return PAY_AVL_AM; }
+    public void setPAY_AVL_AM(String PAY_AVL_AM) { this.PAY_AVL_AM = PAY_AVL_AM; }
 
     public String getACNO() {
         return ACNO;

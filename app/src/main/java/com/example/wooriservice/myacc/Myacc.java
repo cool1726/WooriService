@@ -58,8 +58,8 @@ public class Myacc extends Fragment {
 
     private ImageButton btnGet, btnPost;
     private static TextView accName, accNum, accBal;
-    private static TextView txtInfo;
-    private static Button btnClose;
+    private static TextView acno, ct_bal, pay_avl_am, new_dt, xpr_dt, mm_pid_am;
+    private static ImageButton btnClose;
 
     private IndivAllAccInfoTask task = new IndivAllAccInfoTask();
     private static IndivAllAccInfoData list;
@@ -117,7 +117,12 @@ public class Myacc extends Fragment {
         AlertDialog alertDialog = builder.create();
 
 
-        txtInfo = popupView.findViewById(R.id.accinfo);
+        acno = popupView.findViewById(R.id.acno);
+        ct_bal = popupView.findViewById(R.id.ctbal);
+        pay_avl_am = popupView.findViewById(R.id.payavlam);
+        new_dt = popupView.findViewById(R.id.newdt);
+        xpr_dt = popupView.findViewById(R.id.xprdt);
+        mm_pid_am = popupView.findViewById(R.id.mmpidam);
         btnClose = popupView.findViewById(R.id.btnClose);
 
 
@@ -137,8 +142,8 @@ public class Myacc extends Fragment {
                     bottomsheet.show(getParentFragmentManager(), "bottomsheet");
 
                 } else if (v == btnPost) {
-                    //alertDialog.show();
-                    sendNotification();
+                    alertDialog.show();
+//                    sendNotification();
                 }
             }
         };
@@ -206,10 +211,12 @@ public class Myacc extends Fragment {
 
                     if (accBasicInfoData != null) {
                         ArrayList<IndivAllAccInfoBodyGRID> grid = list.getDataBody().getGRID();
-                        String temp = "";
-                        temp += accBasicInfoData.getDataBody().getACNO();
-                        temp += accBasicInfoData.getDataBody().getACT_STS();
-                        txtInfo.setText(accBasicInfoData.getDataBody().getXPR_DT());
+                        acno.setText(accBasicInfoData.getDataBody().getACNO());
+                        ct_bal.setText(accBasicInfoData.getDataBody().getCT_BAL());
+                        pay_avl_am.setText(accBasicInfoData.getDataBody().getPAY_AVL_AM());
+                        new_dt.setText(accBasicInfoData.getDataBody().getNEW_DT());
+                        xpr_dt.setText(accBasicInfoData.getDataBody().getXPR_DT());
+                        mm_pid_am.setText(accBasicInfoData.getDataBody().getMM_PID_AM());
                         Log.d("ACCBASIC", accBasicInfoData.getDataBody().getACNO());
                     }
                 }

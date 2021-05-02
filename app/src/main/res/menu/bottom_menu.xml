@@ -22,7 +22,7 @@
     <item
         android:id="@+id/card_rec"
         android:enabled="true"
-        android:title="카드 추천"
-        android:icon="@drawable/ic_analysis"/>
+        android:title="카드추천"
+        android:icon="@drawable/ic_credit_card"/>
 
 </menu>
