@@ -3,19 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     app:behavior_hideable="true"
+    android:layout_marginLeft="30dp"
+    android:layout_marginRight="30dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
         android:text="배달 소비가 잦은 당신은"
-        android:textSize="23dp"
+        android:textSize="20dp"
         android:id="@+id/user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/asdgn_b"
-        android:textColor="@color/light_gray"
-        android:layout_marginTop="70dp"
-        android:layout_marginLeft="15dp"
+        android:textColor="@color/mild_blue"
+        android:layout_marginTop="40dp"
         app:layout_constraintBottom_toTopOf="@+id/report_title"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -31,24 +32,23 @@
         app:layout_constraintTop_toBottomOf="@+id/user"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="5dp"
         android:layout_marginBottom="10dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
         app:layout_constraintVertical_chainStyle="packed">
 
         <TextView
             android:text="카드의 정석 POINT 주거래"
-            android:textSize="27dp"
+            android:textSize="22dp"
             android:id="@+id/card"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/asdgn_b"
             android:textColor="@color/black"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="6dp"
             app:layout_constraintHorizontal_bias="0.1"/>
         <TextView
             android:text="로 바꾸면"
-            android:textSize="15dp"
+            android:textSize="16dp"
             android:id="@+id/card2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -68,13 +68,11 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginBottom="10dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
         app:layout_constraintVertical_chainStyle="packed">
 
         <TextView
             android:text="연 3만원"
-            android:textSize="30dp"
+            android:textSize="22dp"
             android:id="@+id/money"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -84,7 +82,7 @@
             app:layout_constraintHorizontal_bias="0.1"/>
         <TextView
             android:text="을 아낄 수 있어요!"
-            android:textSize="25dp"
+            android:textSize="22dp"
             android:id="@+id/money2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -101,10 +99,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/linear1"
         android:layout_marginTop="50dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:background="@drawable/boarder_layout"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/report_title2"
@@ -121,10 +116,10 @@
         <TextView
             android:layout_gravity="center"
             android:text="우리 주거래고객을 위한 혜택"
-            android:textSize="15dp"
+            android:textSize="14dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/asdgn_b"
+            android:fontFamily="@font/asdgn_m"
             android:textColor="@color/light_gray"
             android:layout_marginBottom="10dp"
             app:layout_constraintHorizontal_bias="0.1"/>
@@ -191,7 +186,7 @@
             android:orientation="horizontal"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="5dp"
-            android:layout_marginBottom="15dp">
+            android:layout_marginBottom="25dp">
             <TextView
                 android:id="@+id/newdt_label"
                 android:layout_width="120dp"
@@ -210,6 +205,15 @@
                 android:fontFamily="@font/asdgn_m"
                 android:layout_weight="1"/>
         </LinearLayout>
+
+        <Button
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="카드 신청하기"
+            android:background="@color/mild_blue"
+            android:backgroundTint="@color/mild_blue"
+            android:layout_marginBottom="25dp"/>
 
         </LinearLayout>
 

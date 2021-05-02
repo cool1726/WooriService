@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.WooriService" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/mild_purple</item>
+        <item name="colorPrimary">@color/mild_blue</item>
         <item name="colorPrimaryVariant">@color/mild_blue</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
