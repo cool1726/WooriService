@@ -80,7 +80,7 @@ public class Report_Content extends AppCompatActivity {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-//        drawPiechart();
+        drawPiechart();
 
 
 
@@ -295,6 +295,16 @@ public class Report_Content extends AppCompatActivity {
     public void drawPiechart(){
 
         pieChart = findViewById(R.id.weekimage);
+
+        pieChart.setUsePercentValues(true);
+        pieChart.getDescription().setEnabled(false);
+        pieChart.setExtraOffsets(5,10,5,5);
+
+        pieChart.setDragDecelerationFrictionCoef(0.95f);
+
+        pieChart.setDrawHoleEnabled(false);
+        pieChart.setHoleColor(Color.WHITE);
+        pieChart.setTransparentCircleRadius(61f);
 
 
         ArrayList values = new ArrayList();
