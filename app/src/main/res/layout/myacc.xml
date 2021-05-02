@@ -36,17 +36,27 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginBottom="40dp"/>
 
-    <ImageView
+<!--    <ImageView-->
+<!--        android:id="@+id/accimage"-->
+<!--        android:layout_width="300dp"-->
+<!--        android:layout_height="200dp"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:background="@drawable/wooriacc1"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/myaccountBal"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        android:layout_marginBottom="20dp"/>-->
+    <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/accimage"
         android:layout_width="300dp"
         android:layout_height="200dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/wooriacc1"
         app:layout_constraintBottom_toTopOf="@id/myaccountBal"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/myaccount"
-        android:layout_marginBottom="20dp"/>
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="20dp" />
 
     <TextView
         android:id="@+id/myaccountBal"
@@ -83,7 +93,7 @@
         android:textSize="12dp"
         android:fontFamily="@font/ns_ac_b"
         android:textColor="@color/gray"
-        app:layout_constraintBottom_toTopOf="@id/viewhistory"
+        app:layout_constraintBottom_toTopOf="@+id/viewhistory"
         app:layout_constraintTop_toBottomOf="@+id/myaccountname"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -101,7 +111,7 @@
         app:layout_constraintRight_toLeftOf="@id/viewinform"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintHorizontal_chainStyle="packed"
-        android:layout_marginRight="15dp"/>
+        android:layout_marginRight="15dp" />
 
     <ImageButton
         android:id="@+id/viewinform"
@@ -115,6 +125,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@id/viewhistory"
         app:layout_constraintHorizontal_chainStyle="packed"
-        android:layout_marginLeft="15dp"/>
+        android:layout_marginLeft="15dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

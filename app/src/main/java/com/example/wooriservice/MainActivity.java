@@ -96,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
                 fragment = new Myacc();
 
             } else if (id == R.id.calendars){
-
                 fragment = new Calendars();
             }else if (id == R.id.reports){
                 fragment = new reports();

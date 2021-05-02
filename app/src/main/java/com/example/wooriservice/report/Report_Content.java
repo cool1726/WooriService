@@ -11,11 +11,10 @@ import android.util.Log;
 import com.example.wooriservice.MainActivity;
 import com.example.wooriservice.R;
 
-import com.example.wooriservice.calendars.CalendarAdapter;
-import com.example.wooriservice.calendars.Calendars;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
@@ -27,6 +26,8 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
@@ -39,40 +40,137 @@ import java.io.InputStreamReader;
 import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class Report_Content extends AppCompatActivity {
     private LineChart linechart;
     private BarChart barchart;
     private PieChart pieChart;
+    static ArrayList<ArrayList<String>> translist = new ArrayList<>();
+    static ArrayList<ArrayList<String>> report = new ArrayList<>();
+    ArrayList<ArrayList<String>> reportlist1 = new ArrayList<>();
+    ArrayList<ArrayList<String>> reportlist2 = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report__content);
 
-        drawLinechart();
-        drawBarchart();
-        drawPiechart();
+        settingData();
+
+        try {
+            drawLinechart();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        try {
+            drawBarchart();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+//        drawPiechart();
 
 
 
     }
 
-    public void drawLinechart(){
+    public static void setTransList(ArrayList<ArrayList<String>> translists) {
+        translist = translists;
+
+    }
+    public static void setReportList(ArrayList<ArrayList<String>> reports) {
+        report = reports;
+
+    }
+
+    public  void settingData(){
+        for(int i = 0; i<translist.size(); i++){
+            if(translist.get(i).get(7).equals("9")){
+                reportlist1.add(translist.get(i));
+            }else if(translist.get(i).get(7).equals("10")){
+                reportlist2.add(translist.get(i));
+            }
+        }
+    }
+    public static LinkedHashMap<String, Integer> sortMapByKey(Map<String, Integer> map) {
+        List<Map.Entry<String, Integer>> entries = new LinkedList<>(map.entrySet());
+        Collections.sort(entries, (o1, o2) -> o1.getKey().compareTo(o2.getKey()));
+
+        LinkedHashMap<String, Integer> result = new LinkedHashMap<>();
+        for (Map.Entry<String, Integer> entry : entries) {
+            result.put(entry.getKey(), entry.getValue());
+        }
+        return result;
+    }
+
+    public void drawLinechart() throws ParseException {
 
         linechart = findViewById(R.id.moneyimage);
+//        Map<String, Integer> map1 = new HashMap<>();
+//        Map<String, Integer> map2 = new HashMap<>();
 
         ArrayList<Entry> values = new ArrayList<>();
         ArrayList<Entry> values2 = new ArrayList<>();
 
-        for (int i = 0; i < 10; i++) {
+        ArrayList<Integer> val = new ArrayList<>();
+        ArrayList<Integer> val2 = new ArrayList<>();
 
-            float val = (float) (Math.random() * 10);
-            float val2 = (float) (Math.random()*10);
-            values.add(new Entry(i, val));
-            values2.add(new Entry(i, val2));
+        for(int a = 0; a <7; a++){
+            val.add(0);
+            val2.add(0);
         }
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+        Calendar cal = Calendar.getInstance();
+        cal.setFirstDayOfWeek(Calendar.MONDAY);
+        cal.setMinimalDaysInFirstWeek(7);
+
+
+        for (int i = 0; i < reportlist1.size(); i++) {
+
+            Date nDate = dateFormat.parse(reportlist1.get(i).get(0));
+            cal.setTime(nDate);
+
+            int dayNum = cal.get(Calendar.DAY_OF_WEEK);
+            int bug = val.get(dayNum -1);
+            bug += Integer.parseInt(reportlist1.get(i).get(3));
+            val.set(dayNum -1, bug);
+        }
+        for (int i = 0; i < reportlist2.size(); i++) {
+
+            Date nDate = dateFormat.parse(reportlist2.get(i).get(0));
+            cal.setTime(nDate);
+
+            int dayNum = cal.get(Calendar.DAY_OF_WEEK);
+            int bug = val.get(dayNum -1);
+            bug += Integer.parseInt(reportlist2.get(i).get(3));
+            val2.set(dayNum -1, bug);
+        }
+        int temp1 = 0;
+        int temp2 = 0;
+        for(int i = 0; i < 7; i++){
+            temp1 += val.get(i);
+            temp2 += val2.get(i);
+            val.set(i, temp1);
+            val2.set(i, temp2);
+        }
+
+        for(int b = 0; b <7; b++){
+            values.add(new BarEntry(b, val.get(b)));
+            values2.add(new BarEntry(b, val2.get(b)));
+        }
+
 
         LineDataSet set1;
         set1 = new LineDataSet(values, "DataSet 1");
@@ -85,11 +183,22 @@ public class Report_Content extends AppCompatActivity {
 
         // create a data object with the data sets
         LineData data = new LineData(dataSets);
+        data.setValueTextColor(Color.WHITE);
+
+        ArrayList<String> xAxisLabel = new ArrayList<>();
+        xAxisLabel.add("월");
+        xAxisLabel.add("화");
+        xAxisLabel.add("수");
+        xAxisLabel.add("목");
+        xAxisLabel.add("금");
+        xAxisLabel.add("토");
+        xAxisLabel.add("일");
 
         XAxis xAxis = linechart.getXAxis(); // x 축 설정
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM); //x 축 표시에 대한 위치 설정
         xAxis.setDrawAxisLine(false);
         xAxis.setDrawGridLines(false);// X축 줄의 컬러 설정
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(xAxisLabel));
 
 
         YAxis yAxisLeft = linechart.getAxisLeft();
@@ -105,31 +214,55 @@ public class Report_Content extends AppCompatActivity {
 
         // black lines and points
         linechart.setBackgroundColor(Color.WHITE);
-        set1.setColor(Color.BLACK);
-        set1.setCircleColor(Color.BLACK);
+        set1.setColor(Color.GRAY);
+        set1.setCircleColor(Color.GRAY);
         set2.setColor(Color.BLUE);
         set2.setCircleColor(Color.BLUE);
         linechart.getLegend().setEnabled(false);
 
         // set data
         linechart.setData(data);
+        linechart.setDescription(null);
 
     }
-    public void drawBarchart(){
+    public void drawBarchart() throws ParseException {
 
         barchart = findViewById(R.id.catimage);
 
+        ArrayList<Integer> val = new ArrayList<>();
+
         ArrayList values = new ArrayList();
-        ArrayList values2 = new ArrayList();
+        for(int a = 0; a <7; a++){
+            val.add(0);
+        }
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < reportlist1.size(); i++) {
 
-            int val = (int) (Math.random() * 10);
-            values.add(new BarEntry(val, i));
-            values2.add(i);
+            Date nDate = dateFormat.parse(reportlist1.get(i).get(0));
 
+            Calendar cal = Calendar.getInstance();
+            cal.setFirstDayOfWeek(Calendar.MONDAY);
+            cal.setMinimalDaysInFirstWeek(7);
+            cal.setTime(nDate);
+
+            int dayNum = cal.get(Calendar.DAY_OF_WEEK);
+            int bug = val.get(dayNum -1);
+            bug += Integer.parseInt(reportlist1.get(i).get(3));
+            val.set(dayNum -1, bug);
         }
 
+        for(int b = 0; b <7; b++){
+            values.add(new BarEntry(b, val.get(b)));
+        }
+        ArrayList<String> xAxisLabel = new ArrayList<>();
+        xAxisLabel.add("월");
+        xAxisLabel.add("화");
+        xAxisLabel.add("수");
+        xAxisLabel.add("목");
+        xAxisLabel.add("금");
+        xAxisLabel.add("토");
+        xAxisLabel.add("일");
 
         BarDataSet set1 = new BarDataSet(values, "DataSet 1");
         set1.setColors(ColorTemplate.PASTEL_COLORS);
@@ -139,6 +272,8 @@ public class Report_Content extends AppCompatActivity {
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM); //x 축 표시에 대한 위치 설정
         xAxis.setDrawAxisLine(false);
         xAxis.setDrawGridLines(false);// X축 줄의 컬러 설정
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(xAxisLabel));
+
 
 
         YAxis yAxisLeft = barchart.getAxisLeft();
@@ -151,11 +286,9 @@ public class Report_Content extends AppCompatActivity {
         yAxisRight.setDrawAxisLine(false);
         yAxisRight.setDrawGridLines(false);
 
-
-
-
         // set data
         barchart.getLegend().setEnabled(false);
+        barchart.setDescription(null);
         barchart.setData(data);
 
     }
@@ -163,16 +296,17 @@ public class Report_Content extends AppCompatActivity {
 
         pieChart = findViewById(R.id.weekimage);
 
+
         ArrayList values = new ArrayList();
-        ArrayList values2 = new ArrayList();
+        int ttl_amount = Integer.parseInt(report.get(0).get(2));
+        String Maxct = report.get(0).get(4);
+        int maxct_amount = Integer.parseInt(report.get(0).get(5));
 
-        for (int i = 0; i < 10; i++) {
+        int amt = ttl_amount - maxct_amount;
 
-            int val = (int) (Math.random() * 10);
-            values.add(new PieEntry(val, i));
-            values2.add(i);
+        values.add(new PieEntry(maxct_amount, 0));
+        values.add(new PieEntry(amt, 1));
 
-        }
 
 
         PieDataSet set1 = new PieDataSet(values, "DataSet 1");
@@ -184,5 +318,4 @@ public class Report_Content extends AppCompatActivity {
         pieChart.setData(data);
 
     }
-
 }

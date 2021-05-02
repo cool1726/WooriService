@@ -179,8 +179,8 @@ public class reports extends Fragment {
                 }
                 Message message = mHandler.obtainMessage(LOAD_SUCCESS, result);
                 Log.d("DB", result);
-                Log.d("List", reportlist.get(0).get(0));
                 mHandler.sendMessage(message);
+                Report_Content.setReportList(reportlist);
 
             }
         });

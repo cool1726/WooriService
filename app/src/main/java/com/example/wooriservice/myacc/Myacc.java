@@ -15,13 +15,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.wooriservice.HTTP.HttpUrl;
 import com.example.wooriservice.MainActivity;
@@ -35,6 +39,7 @@ import com.example.wooriservice.RequestEntity.IndivAllAccInfoHeaderReq;
 import com.example.wooriservice.ResponseEntity.AccBasicInfoData;
 import com.example.wooriservice.ResponseEntity.IndivAllAccInfoBodyGRID;
 import com.example.wooriservice.ResponseEntity.IndivAllAccInfoData;
+import com.example.wooriservice.report.Report_Content;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.gson.Gson;
 
@@ -91,6 +96,8 @@ public class Myacc extends Fragment {
     // Notification에 대한 ID 생성
     private static final int NOTIFICATION_ID = 0;
 
+    private ViewPager2 sliderViewPager;
+
 
     @Nullable
     @Override
@@ -115,6 +122,18 @@ public class Myacc extends Fragment {
         builder.setView(popupView);
 
         AlertDialog alertDialog = builder.create();
+
+        sliderViewPager = view.findViewById(R.id.accimage);
+
+        sliderViewPager.setOffscreenPageLimit(1);
+        sliderViewPager.setAdapter(new ImageSliderAdapter(getContext()));
+
+        sliderViewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+            }
+        });
 
 
         acno = popupView.findViewById(R.id.acno);
@@ -372,6 +391,7 @@ public class Myacc extends Fragment {
                         String bal = jsonObject.getString("DPS_BAL");
                         String trntext = jsonObject.getString("TRN_TXT");
                         String category = jsonObject.getString("CATEGORY");
+                        String week = jsonObject.getString("WEEK");
                         trans.add(date);
                         trans.add(time);
                         trans.add(rcvam);
@@ -379,6 +399,7 @@ public class Myacc extends Fragment {
                         trans.add(bal);
                         trans.add(trntext);
                         trans.add(category);
+                        trans.add(week);
                         translist.add(trans);
 
                     }
@@ -393,6 +414,7 @@ public class Myacc extends Fragment {
             }
         });
         AccTrans.setTransList(translist);
+        Report_Content.setTransList(translist);
         thread.start();
     }
 
@@ -434,5 +456,7 @@ public class Myacc extends Fragment {
         // Manager를 통해 notification 디바이스로 전달
         mNotificationManager.notify(NOTIFICATION_ID,notifyBuilder.build());
     }
+
+
 
 }

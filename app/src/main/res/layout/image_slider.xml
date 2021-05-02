@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/accimageslide"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="20dp"/>
+
+<!--    <TextView-->
+<!--        android:id="@+id/myaccountBal"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="3,014,050원"-->
+<!--        android:textSize="18dp"-->
+<!--        android:fontFamily="@font/ns_ac_eb"-->
+<!--        android:textColor="@color/dark_blue"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/myaccountname"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/accimage"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        android:layout_marginBottom="10dp"/>-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/myaccountname"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="WON 통장"-->
+<!--        android:textSize="14dp"-->
+<!--        android:fontFamily="@font/ns_ac_b"-->
+<!--        android:textColor="@color/black"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/myaccountnum"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/myaccountBal"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        android:layout_marginBottom="5dp"/>-->
+<!--    <TextView-->
+<!--        android:id="@+id/myaccountnum"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="1002 *** 234***"-->
+<!--        android:textSize="12dp"-->
+<!--        android:fontFamily="@font/ns_ac_b"-->
+<!--        android:textColor="@color/gray"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/myaccountname"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        android:layout_marginBottom="5dp"/>-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>
